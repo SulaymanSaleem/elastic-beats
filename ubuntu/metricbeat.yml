@@ -64,8 +64,11 @@ setup.kibana:
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  host: "10.0.0.23:5601"
-
+  host: "https://10.0.0.30:5601"
+  ssl.certificate_authorities: ["/var/lib/docker/volumes/es_certs/_data/ca/ca.crt"]
+  ssl.certificate: "/var/lib/docker/volumes/es_certs/_data/kib01/kib01.crt"
+  ssl.key: "/var/lib/docker/volumes/es_certs/_data/kib01/kib01.key"
+  ssl.verification_mode: none
   # Kibana Space ID
   # ID of the Kibana Space into which the dashboards should be loaded. By default,
   # the Default Space will be used.
@@ -89,15 +92,17 @@ setup.kibana:
 # Configure what output to use when sending the data collected by the beat.
 
 #-------------------------- Elasticsearch output ------------------------------
-output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["10.0.0.23:9200"]
+output.elasticsearch:
+  hosts: ["https://10.0.0.30:9200"]
+  ssl.certificate_authorities: ["/var/lib/docker/volumes/es_certs/_data/ca/ca.crt"]
+  ssl.certificate: "/var/lib/docker/volumes/es_certs/_data/es01/es01.crt"
+  ssl.key: "/var/lib/docker/volumes/es_certs/_data/es01/es01.key"
+  username: elastic
+  password: R1k6ZFgWRcoM0AWzdIWf
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"
-  username: "elastic"
-  password: "changeme"
-
 #----------------------------- Logstash output --------------------------------
 #output.logstash:
   # The Logstash hosts

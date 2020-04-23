@@ -9,7 +9,7 @@ sudo apt-get update && sudo apt-get install filebeat
 sudo update-rc.d filebeat defaults 95 10
 
 #Replace filebeat yaml file
-sudo rm -rf ../etc/filebeat/filebeat.yml
+sudo rm -rf /etc/filebeat/filebeat.yml
 sudo cp filebeat.yml /../etc/filebeat/
 #Enable modules
 sudo filebeat modules enable elasticsearch
