@@ -114,13 +114,11 @@ setup.template.settings:
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.
 setup.kibana:
-  host: "https://10.0.0.30:5601"
+  host: "https://10.80.244.25:5601"
   # ssl.enabled: true
-  ssl.certificate_authorities: ["/var/lib/docker/volumes/es_certs/_data/ca/ca.crt"]
-  ssl.certificate: "/var/lib/docker/volumes/es_certs/_data/kib01/kib01.crt"
-  ssl.key: "/var/lib/docker/volumes/es_certs/_data/kib01/kib01.key"
-#username: elastic
-#password: Ln00j7iUxfwjuUTrtMBt
+  ssl.certificate_authorities: ["/etc/filebeat/es_certs/_data/ca/ca.crt"]
+  ssl.certificate: "/etc/filebeat/es_certs/_data/kib01/kib01.crt"
+  ssl.key: "/etc/filebeat/es_certs/_data/kib01/kib01.key"
   ssl.verification_mode: none
   # Kibana Host
   # Scheme and port can be left out and will be set to the default (http and 5601)
@@ -153,12 +151,12 @@ setup.kibana:
   # Optional protocol and basic auth credentials.
   #protocol: "https"
 output.elasticsearch:
-  hosts: ["https://10.0.0.30:9200"]
-  ssl.certificate_authorities: ["/var/lib/docker/volumes/es_certs/_data/ca/ca.crt"]
-  ssl.certificate: "/var/lib/docker/volumes/es_certs/_data/es01/es01.crt"
-  ssl.key: "/var/lib/docker/volumes/es_certs/_data/es01/es01.key"
+  hosts: ["https://10.80.244.25:9200"]
+  ssl.certificate_authorities: ["/etc/filebeat/es_certs/_data/ca/ca.crt"]
+  ssl.certificate: "/etc/filebeat/es_certs/_data/es01/es01.crt"
+  ssl.key: "/etc/filebeat/es_certs/_data/es01/es01.key"
   username: elastic
-  password: R1k6ZFgWRcoM0AWzdIWf
+  password: pulsepassword00
   ssl.verification_mode: "none"
 
 #----------------------------- Logstash output --------------------------------

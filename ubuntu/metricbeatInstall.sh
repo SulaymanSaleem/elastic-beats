@@ -7,12 +7,14 @@ echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee 
 sudo apt-get update && sudo apt-get install metricbeat
 sudo update-rc.d metricbeat defaults 95 10
 #Replace metricbeat yaml file
-sudo rm -rf ../etc/metricbeat/metricbeat.yml
-sudo cp metricbeat.yml /../etc/metricbeat
+sudo rm -rf /etc/metricbeat/metricbeat.yml
+sudo cp metricbeat.yml /etc/metricbeat
+sudo cp ../es_certs/ /etc/metricbeat/ -r
 #Enable modules
 sudo metricbeat modules enable elasticsearch
 sudo metricbeat modules enable system
 sudo metricbeat modules enable kibana
+sudo cp ./modules.d/ /etc/metricbeat/ -r
 #Test output connection and config
 sudo metricbeat test output
 sudo metricbeat test config
