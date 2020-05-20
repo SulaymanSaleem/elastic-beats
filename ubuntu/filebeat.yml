@@ -156,7 +156,7 @@ output.elasticsearch:
   ssl.certificate: "/etc/filebeat/es_certs/_data/es01/es01.crt"
   ssl.key: "/etc/filebeat/es_certs/_data/es01/es01.key"
   username: elastic
-  password: pulsepassword00
+  password: ${ES_PASSWORD}
   ssl.verification_mode: "none"
 
 #----------------------------- Logstash output --------------------------------
