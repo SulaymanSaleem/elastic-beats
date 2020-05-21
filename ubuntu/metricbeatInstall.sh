@@ -19,7 +19,7 @@ sudo cp ./modules.d/* /etc/metricbeat/modules.d/ -r
 sudo metricbeat test output
 sudo metricbeat test config
 #Setup kibana dashboards
-sudo metricbeat setup -e
+metricbeat setup -e
 #Start Metricbeat
-sudo systemctl enable metricbeat
-sudo systemctl start metricbeat
+systemctl enable metricbeat
+systemctl start metricbeat

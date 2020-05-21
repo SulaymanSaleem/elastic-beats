@@ -99,7 +99,7 @@ output.elasticsearch:
   ssl.certificate: "/etc/metricbeat/es_certs/_data/es01/es01.crt"
   ssl.key: "/etc/metricbeat/es_certs/_data/es01/es01.key"
   username: elastic
-  password: 
+  password: ${ES_PASSWORD} 
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"

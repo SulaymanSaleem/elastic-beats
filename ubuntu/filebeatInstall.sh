@@ -17,10 +17,10 @@ sudo filebeat modules enable elasticsearch
 sudo filebeat modules enable system
 sudo filebeat modules enable kibana
 #Test output connection and config
-sudo filebeat test output
-sudo filebeat test config
+filebeat test output
+filebeat test config
 #Setup kibana dashboards
-sudo filebeat setup -e
+filebeat setup -e
 #Start filebeat
 sudo systemctl enable filebeat
-sudo systemctl start filebeat
+systemctl start filebeat
