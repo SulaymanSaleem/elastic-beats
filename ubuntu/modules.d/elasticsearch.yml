@@ -6,6 +6,6 @@
   #  - node
   #  - node_stats
   period: 10s
-  hosts: ["https://10.80.244.25:9200"]
+  hosts: ["https://${ES_HOST}:9200"]
   #username: "user"
   #password: "secret"

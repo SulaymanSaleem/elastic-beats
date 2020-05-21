@@ -64,7 +64,7 @@ setup.kibana:
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  host: "https://10.80.244.25:5601"
+  host: "https://${ES_HOST}:5601"
   ssl.certificate_authorities: ["/etc/metricbeat/es_certs/_data/ca/ca.crt"]
   ssl.certificate: "/etc/metricbeat/es_certs/_data/kib01/kib01.crt"
   ssl.key: "/etc/metricbeat/es_certs/_data/kib01/kib01.key"
@@ -94,12 +94,12 @@ setup.kibana:
 #-------------------------- Elasticsearch output ------------------------------
   # Array of hosts to connect to.
 output.elasticsearch:
-  hosts: ["https://10.80.244.25:9200"]
+  hosts: ["https://${ES_HOST}:9200"]
   ssl.certificate_authorities: ["/etc/metricbeat/es_certs/_data/ca/ca.crt"]
   ssl.certificate: "/etc/metricbeat/es_certs/_data/es01/es01.crt"
   ssl.key: "/etc/metricbeat/es_certs/_data/es01/es01.key"
   username: elastic
-  password: pulsepassword00
+  password: 
 
   # Optional protocol and basic auth credentials.
   #protocol: "https"

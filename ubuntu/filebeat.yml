@@ -114,7 +114,7 @@ setup.template.settings:
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.
 setup.kibana:
-  host: "https://10.80.244.25:5601"
+  host: "https:${ES_HOST}:5601"
   # ssl.enabled: true
   ssl.certificate_authorities: ["/etc/filebeat/es_certs/_data/ca/ca.crt"]
   ssl.certificate: "/etc/filebeat/es_certs/_data/kib01/kib01.crt"
@@ -151,7 +151,7 @@ setup.kibana:
   # Optional protocol and basic auth credentials.
   #protocol: "https"
 output.elasticsearch:
-  hosts: ["https://10.80.244.25:9200"]
+  hosts: ["https://${ES_HOST}:9200"]
   ssl.certificate_authorities: ["/etc/filebeat/es_certs/_data/ca/ca.crt"]
   ssl.certificate: "/etc/filebeat/es_certs/_data/es01/es01.crt"
   ssl.key: "/etc/filebeat/es_certs/_data/es01/es01.key"
