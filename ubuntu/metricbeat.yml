@@ -100,7 +100,7 @@ output.elasticsearch:
   ssl.key: "/etc/metricbeat/es_certs/_data/es01/es01.key"
   username: elastic
   password: ${ES_PASSWORD} 
-
+  ssl.verification_mode: "none"
   # Optional protocol and basic auth credentials.
   #protocol: "https"
 #----------------------------- Logstash output --------------------------------
