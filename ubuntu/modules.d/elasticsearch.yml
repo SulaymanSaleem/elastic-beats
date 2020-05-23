@@ -7,5 +7,6 @@
   #  - node_stats
   period: 10s
   hosts: ["https://${ES_HOST}:9200"]
+  ssl.verification_mode: "none"
   #username: "user"
   #password: "secret"
