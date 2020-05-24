@@ -5,8 +5,8 @@
   #metricsets:
   #  - status
   period: 10s
-  hosts: ["${ES_HOST}:5601"]
+  hosts: ["https://${ES_HOST}:5601"]
   ssl.verification_mode: "none"
   #basepath: ""
-  #username: "user"
-  #password: "secret"
+  username: "elastic"
+  password: "${ES_PASSWORD}"
