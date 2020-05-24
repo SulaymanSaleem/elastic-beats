@@ -11,10 +11,11 @@ sudo rm -rf /etc/metricbeat/metricbeat.yml
 sudo cp metricbeat.yml /etc/metricbeat
 sudo cp ../es_certs/ /etc/metricbeat/ -r
 #Enable modules
+sudo cp ./modules.d/* /etc/metricbeat/modules.d/ -r
 sudo metricbeat modules enable elasticsearch
 sudo metricbeat modules enable system
 sudo metricbeat modules enable kibana
-sudo cp ./modules.d/* /etc/metricbeat/modules.d/ -r
+sudo metricbeat modules enable elasticsearch-xpack
 #Test output connection and config
 sudo metricbeat test output
 sudo metricbeat test config
