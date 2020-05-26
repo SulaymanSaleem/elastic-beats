@@ -6,6 +6,7 @@ sudo yum install filebeat -y
 sudo systemctl enable filebeat
 
 sudo cp filebeat.yml /etc/filebeat/
+sudo cp ../es_certs/ /etc/filebeat/ -r
 
 sudo filebeat modules enable elasticsearch
 sudo filebeat modules enable kibana
@@ -17,4 +18,5 @@ sudo filebeat test config
 
 sudo filebeat setup -e
 
+sudo systemctl enable filebeat
 sudo systemctl start filebeat

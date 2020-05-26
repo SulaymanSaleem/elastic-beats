@@ -6,7 +6,9 @@ sudo yum install metricbeat -y
 sudo systemctl enable metricbeat
 
 sudo cp metricbeat.yml /etc/metricbeat/metricbeat.yml
+sudo cp ../es_certs/ /etc/metricbeat/ -r
 
+udo cp modules.d/ /etc/metricbeat/ -r
 sudo metricbeat modules enable elasticsearch
 sudo metricbeat modules enable kibana
 sudo metricbeat modules enable system
