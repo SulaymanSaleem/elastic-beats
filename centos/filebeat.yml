@@ -27,28 +27,6 @@ filebeat.inputs:
   paths:
     - /var/log/*.log
     #- c:\programdata\elasticsearch\logs\*
-        
-- type: log
-  paths:
-    - "/var/log/knox/*"
-  fields:
-    knox: true
-  fields_under_root: true
-
-- type: log
-  paths:
-    - "/var/log/hadoop/hdfs/*"
-  fields:
-    hadoop: true
-  fields_under_root: true
-
-
-- type: log
-  paths:
-    - "/var/log/hadoop-yarn/yarn/*"
-  fields:
-    hadoop: true
-  fields_under_root: true
 
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.
@@ -100,7 +78,7 @@ filebeat.config.modules:
 #==================== Elasticsearch template setting ==========================
 
 setup.template.settings:
-  index.number_of_shards: 1
+  index.number_of_shards: 5
   #index.codec: best_compression
   #_source.enabled: false
 
@@ -133,17 +111,19 @@ setup.template.settings:
 #setup.dashboards.url:
 
 #============================== Kibana =====================================
-
 # Starting with Beats version 6.0.0, the dashboards are loaded via the Kibana API.
 # This requires a Kibana endpoint configuration.
 setup.kibana:
-
+  host: "https://${ES_HOST}:5601"
+  # ssl.enabled: true
+  ssl.certificate_authorities: ["/etc/filebeat/es_certs/_data/ca/ca.crt"]
+  ssl.certificate: "/etc/filebeat/es_certs/_data/kib01/kib01.crt"
+  ssl.key: "/etc/filebeat/es_certs/_data/kib01/kib01.key"
+  ssl.verification_mode: none
   # Kibana Host
   # Scheme and port can be left out and will be set to the default (http and 5601)
   # In case you specify and additional path, the scheme is required: http://localhost:5601/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:5601
-  host: "10.0.0.23:5601"
-
   # Kibana Space ID
   # ID of the Kibana Space into which the dashboards should be loaded. By default,
   # the Default Space will be used.
@@ -167,19 +147,22 @@ setup.kibana:
 # Configure what output to use when sending the data collected by the beat.
 
 #-------------------------- Elasticsearch output ------------------------------
-output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["http://10.0.0.23:9200"]
-
   # Optional protocol and basic auth credentials.
   #protocol: "https"
-  username: "elastic"
-  password: "changeme"
+output.elasticsearch:
+  hosts: ["https://${ES_HOST}:9200"]
+  ssl.certificate_authorities: ["/etc/filebeat/es_certs/_data/ca/ca.crt"]
+  ssl.certificate: "/etc/filebeat/es_certs/_data/es01/es01.crt"
+  ssl.key: "/etc/filebeat/es_certs/_data/es01/es01.key"
+  username: elastic
+  password: ${ES_PASSWORD}
+  ssl.verification_mode: "none"
 
 #----------------------------- Logstash output --------------------------------
 #output.logstash:
   # The Logstash hosts
-  #hosts: ["localhost:5044"]
+  # hosts: ["3.9.208.127:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
@@ -198,8 +181,6 @@ output.elasticsearch:
 processors:
   - add_host_metadata: ~
   - add_cloud_metadata: ~
-  - add_docker_metadata: ~
-  - add_kubernetes_metadata: ~
 
 #================================ Logging =====================================
 
